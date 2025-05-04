@@ -3,54 +3,103 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Generative Trivia Project</title>
+  <title>Project Detail</title>
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="bg-gray-100 flex items-center justify-center min-h-screen p-4">
-
-  <div class="max-w-6xl w-full grid grid-cols-1 md:grid-cols-2 gap-8 bg-white rounded-xl shadow-md p-6">
-    <!-- Left: Project Screenshots -->
-    <!-- <div class="flex flex-col space-y-4">
-      <div class="relative">
-        <img src="https://res.cloudinary.com/dhwgp0ccg/image/upload/v1746347350/qm-target_mjmtny.png" alt="Screenshot 1" class="rounded-md shadow-lg">
-        <img src="https://res.cloudinary.com/dhwgp0ccg/image/upload/v1746347350/qm-target_mjmtny.png" alt="Screenshot 2" class="absolute top-6 left-6 w-4/5 rounded-md shadow-md opacity-80">
-      </div>
-      <img src="https://res.cloudinary.com/dhwgp0ccg/image/upload/v1746347350/qm-target_mjmtny.png" alt="Screenshot 3" class="rounded-md shadow-lg">
-    </div> -->
-    <div class="relative w-[400px] h-[400px] md:w-[600px] md:h-[600px]">
+<body class="bg-gray-100 text-gray-800 p-10">
+  <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-10 bg-white p-10 rounded-lg shadow-md">
     
-      <!-- Gambar besar kiri bawah -->
-      <img src="https://res.cloudinary.com/dhwgp0ccg/image/upload/v1746346526/koperasi-web-user-add_tmtnmt.png" 
-           alt="Gambar Besar" 
-           class="absolute w-[200px] h-[200px] md:w-[450px] md:h-[260px] object-cover left-0 bottom-44 shadow-xl rounded transition-transform duration-300 hover:scale-125 grayscale hover:grayscale-0" />
-  
-      <!-- Gambar kecil kanan atas -->
-      <img src="https://res.cloudinary.com/dhwgp0ccg/image/upload/v1746346526/koperasi-web-user-add_tmtnmt.png" 
-           alt="Gambar Kecil" 
-           class="absolute w-[120px] h-[120px] md:w-[180px] md:h-[180px] object-cover right-20 top-0 shadow-lg rounded transition-transform duration-300 hover:scale-125 grayscale hover:grayscale-0" />
-  
-      <!-- Gambar sedang kanan bawah -->
-      <img src="https://res.cloudinary.com/dhwgp0ccg/image/upload/v1746346526/koperasi-web-user-add_tmtnmt.png" 
-           alt="Gambar Sedang" 
-           class="absolute w-[180px] h-[180px] md:w-[280px] md:h-[280px] object-cover right-14 bottom-16 shadow-lg rounded transition-transform duration-300 hover:scale-125 grayscale hover:grayscale-0" />
-  
+    <!-- LEFT COLUMN -->
+    <div class="space-y-6">
+      <div>
+        <h2 class="text-xs font-semibold tracking-widest text-gray-500">PROJECT</h2>
+        <h1 class="text-2xl font-bold text-gray-900">Generative Trivia</h1>
+      </div>
+      <div>
+        <h2 class="text-xs font-semibold tracking-widest text-gray-500">TECHNOLOGY</h2>
+        <p class="text-base font-medium text-gray-900">
+          NextJS, Shadcn UI, Tailwind CSS, Firebase, Gemini API
+        </p>
+      </div>
+      <div>
+        <h2 class="text-xs font-semibold tracking-widest text-gray-500">YEAR</h2>
+        <p class="text-base font-medium text-gray-900">2024</p>
+      </div>
+      <div>
+        <h2 class="text-xs font-semibold tracking-widest text-gray-500">PREVIEW</h2>
+        <a href="#" class="text-base font-medium text-indigo-600 hover:underline inline-flex items-center">
+          Preview
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h6m0 0v6m0-6L10 20" />
+          </svg>
+        </a>
+      </div>
+      <div>
+        <h2 class="text-xs font-semibold tracking-widest text-gray-500">SOURCE CODE</h2>
+        <a href="#" class="text-base font-medium text-gray-900 inline-flex items-center hover:text-indigo-600">
+          Github
+          <svg class="w-5 h-5 ml-1" fill="currentColor" viewBox="0 0 24 24">
+            <path
+              d="M12 .5C5.73.5.5 5.73.5 12c0 5.08 3.29 9.38 7.86 10.9.58.1.79-.25.79-.56 0-.28-.01-1.02-.01-2-3.2.7-3.88-1.37-3.88-1.37-.53-1.33-1.3-1.69-1.3-1.69-1.06-.73.08-.71.08-.71 1.17.08 1.78 1.21 1.78 1.21 1.04 1.78 2.73 1.26 3.4.96.1-.75.4-1.26.73-1.55-2.56-.3-5.25-1.28-5.25-5.7 0-1.26.45-2.3 1.2-3.11-.12-.3-.52-1.52.11-3.18 0 0 .97-.31 3.17 1.19a11.04 11.04 0 012.89-.39c.98 0 1.98.13 2.89.39 2.2-1.5 3.17-1.19 3.17-1.19.63 1.66.23 2.88.11 3.18.75.81 1.2 1.85 1.2 3.11 0 4.43-2.7 5.4-5.27 5.69.42.36.79 1.1.79 2.21 0 1.6-.01 2.89-.01 3.28 0 .31.21.67.8.56A10.999 10.999 0 0023.5 12C23.5 5.73 18.27.5 12 .5z"
+            />
+          </svg>
+        </a>
+      </div>
     </div>
 
-    <!-- Right: Description -->
-    <div class="flex flex-col justify-center text-gray-800">
-      <h2 class="text-2xl font-bold mb-4">Generative Trivia</h2>
-      <p class="mb-6 leading-relaxed">
-        A generative trivia website built with <strong>Next.js, Firebase, NextAuth, Google OAuth,</strong> and <strong>TypeScript</strong>. 
-        Users can generate trivia questions for predefined school subjects and answer them with a unique interactive input style. 
-        The application supports user authentication with Google and stores data in Firestore. 
-        You can see the source code of this project on my GitHub account or preview the project by clicking the button below.
+    <!-- RIGHT COLUMN -->
+    <div>
+      <h2 class="text-xs font-semibold tracking-widest text-gray-500 mb-2">DESCRIPTION</h2>
+      <p class="text-gray-700 mb-4 leading-relaxed">
+        A generative trivia website built with Next.js, Firebase, NextAuth, Google OAuth, and TypeScript.
+        Users can generate trivia questions for predefined school subjects and answer them with a unique
+        interactive input style. The application supports user authentication with Google and stores data in Firestore.
       </p>
-      <div class="flex space-x-4">
-        <button class="bg-gray-800 text-white px-5 py-2 rounded-full shadow-md hover:bg-gray-700 transition">More</button>
-        <button class="border border-gray-800 text-gray-800 px-5 py-2 rounded-full shadow-md hover:bg-gray-100 transition">Preview</button>
-      </div>
+      <p class="text-gray-700 leading-relaxed">
+        The project is a culmination of my passion for web development and my desire to create a fun and
+        interactive learning platform. The website is designed to be user-friendly and engaging, with a clean
+        and modern interface that appeals to a wide audience. The trivia questions are generated using the
+        Gemini API, which provides a diverse range of questions for users to answer.
+      </p>
     </div>
   </div>
 
+  <div class="grid grid-cols-1 gap-4">
+    <!-- Gambar Website -->
+    <img src="https://res.cloudinary.com/dhwgp0ccg/image/upload/v1746346512/koperasi-web-dashboard_ayyvz3.png" class="h-100 w-full object-cover rounded-xl shadow">
+    <img src="https://res.cloudinary.com/dhwgp0ccg/image/upload/v1746346512/koperasi-web-user-detail_ll664c.png" class="h-100 w-full object-cover rounded-xl shadow">
+    <img src="https://res.cloudinary.com/dhwgp0ccg/image/upload/v1746346512/koperasi-web-product_yn4pfp.png" class="h-100 w-full object-cover rounded-xl shadow">
+    <img src="https://res.cloudinary.com/dhwgp0ccg/image/upload/v1746346513/koperasi-web-product-detail_anmtfk.png" class="h-100 w-full object-cover rounded-xl shadow">
+    <img src="https://res.cloudinary.com/dhwgp0ccg/image/upload/v1746346513/koperasi-web-product-add_bdkka8.png" class="h-100 w-full object-cover rounded-xl shadow">
+    <img src="https://res.cloudinary.com/dhwgp0ccg/image/upload/v1746346512/koperasi-web-user_amzvgh.png" class="h-100 w-full object-cover rounded-xl shadow">
+    <img src="https://res.cloudinary.com/dhwgp0ccg/image/upload/v1746346514/koperasi-web-transaction-cash_qzjc4y.png" class="h-100 w-full object-cover rounded-xl shadow">
+    <img src="https://res.cloudinary.com/dhwgp0ccg/image/upload/v1746346513/koperasi-web-product-edit_tglox8.png" class="h-100 w-full object-cover rounded-xl shadow">
+    <img src="https://res.cloudinary.com/dhwgp0ccg/image/upload/v1746346514/koperasi-web-transaction-cash-detail_whn0vc.png" class="h-100 w-full object-cover rounded-xl shadow">
+    <img src="https://res.cloudinary.com/dhwgp0ccg/image/upload/v1746346515/koperasi-web-user-edit_thjguo.png" class="h-100 w-full object-cover rounded-xl shadow">
+    <img src="https://res.cloudinary.com/dhwgp0ccg/image/upload/v1746346515/koperasi-web-transaction-kredit_qcvttf.png" class="h-100 w-full object-cover rounded-xl shadow">
+    <img src="https://res.cloudinary.com/dhwgp0ccg/image/upload/v1746346521/koperasi-web-kredit-detail_xquwk3.png" class="h-100 w-full object-cover rounded-xl shadow">
+    <img src="https://res.cloudinary.com/dhwgp0ccg/image/upload/v1746346521/koperasi-web-report_p1ynvr.png" class="h-100 w-full object-cover rounded-xl shadow">
+    <img src="https://res.cloudinary.com/dhwgp0ccg/image/upload/v1746346522/koperasi-web-profile-edit_h40vqf.png" class="h-100 w-full object-cover rounded-xl shadow">
+    <img src="https://res.cloudinary.com/dhwgp0ccg/image/upload/v1746346522/koperasi-web-report-print_ee9uak.png" class="h-100 w-full object-cover rounded-xl shadow">
+    <img src="https://res.cloudinary.com/dhwgp0ccg/image/upload/v1746346522/koperasi-web-change-password_g8gwre.png" class="h-100 w-full object-cover rounded-xl shadow">
+    <img src="https://res.cloudinary.com/dhwgp0ccg/image/upload/v1746346526/koperasi-web-transaction-kredit-detail_f89wjo.png" class="h-100 w-full object-cover rounded-xl shadow">
+    <img src="https://res.cloudinary.com/dhwgp0ccg/image/upload/v1746346526/koperasi-web-user-add_tmtnmt.png" class="h-100 w-full object-cover rounded-xl shadow">
+  </div>
+
+  <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
+    <!-- Gambar Mobile -->
+    <img src="https://res.cloudinary.com/dhwgp0ccg/image/upload/v1746346044/mobile-login_cgwm2p.png" class="h-100 w-full object-contain rounded-xl shadow bg-white p-2">
+    <img src="https://res.cloudinary.com/dhwgp0ccg/image/upload/v1746346043/mobile-home_rmnvjc.png" class="h-100 w-full object-contain rounded-xl shadow bg-white p-2">
+    <img src="https://res.cloudinary.com/dhwgp0ccg/image/upload/v1746346042/mobile-scan_r5ou8q.png" class="h-100 w-full object-contain rounded-xl shadow bg-white p-2">
+    <img src="https://res.cloudinary.com/dhwgp0ccg/image/upload/v1746346042/mobile-kredit_zabwyr.png" class="h-100 w-full object-contain rounded-xl shadow bg-white p-2">
+    <img src="https://res.cloudinary.com/dhwgp0ccg/image/upload/v1746346043/mobile-buyer-tagihan_p8shra.png" class="h-100 w-full object-contain rounded-xl shadow bg-white p-2">
+    <img src="https://res.cloudinary.com/dhwgp0ccg/image/upload/v1746346044/mobile-transaction-detail_rkvjwk.png" class="h-100 w-full object-contain rounded-xl shadow bg-white p-2">
+    <img src="https://res.cloudinary.com/dhwgp0ccg/image/upload/v1746346043/mobile-transaction_d8vpfy.png" class="h-100 w-full object-contain rounded-xl shadow bg-white p-2">
+    <img src="https://res.cloudinary.com/dhwgp0ccg/image/upload/v1746346044/mobile-transaction-cash_dq7ssk.png" class="h-100 w-full object-contain rounded-xl shadow bg-white p-2">
+    <img src="https://res.cloudinary.com/dhwgp0ccg/image/upload/v1746346043/mobile-buyer-profile_z4vlde.png" class="h-100 w-full object-contain rounded-xl shadow bg-white p-2">
+    <img src="https://res.cloudinary.com/dhwgp0ccg/image/upload/v1746346044/mobile-profile-detail_ffhgy1.png" class="h-100 w-full object-contain rounded-xl shadow bg-white p-2">
+    <img src="https://res.cloudinary.com/dhwgp0ccg/image/upload/v1746346044/mobile-profile-edit_fknw3x.png" class="h-100 w-full object-contain rounded-xl shadow bg-white p-2">
+    <img src="https://res.cloudinary.com/dhwgp0ccg/image/upload/v1746346044/mobile-change-password_lr1huz.png" class="h-100 w-full object-contain rounded-xl shadow bg-white p-2">
+  </div>
 </body>
 </html>
