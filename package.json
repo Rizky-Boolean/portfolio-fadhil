@@ -1,10 +1,11 @@
 {
+  "_comment": "dev\": \"npx tailwindcss -o ./src/css/final.css --minify",
   "name": "belajar-tailwind",
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
     "build": "npx tailwindcss -i ./src/css/input.css -o ./src/css/output.css --watch",
-    "dev": "npx tailwindcss -o ./src/css/final.css --minify"
+    "dev": "npx tailwindcss -o ./public/css/final.css --minify"
   },
   "keywords": [],
   "author": "",
