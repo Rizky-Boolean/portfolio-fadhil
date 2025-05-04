@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Generative Trivia Project</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 flex items-center justify-center min-h-screen p-4">
+
+  <div class="max-w-6xl w-full grid grid-cols-1 md:grid-cols-2 gap-8 bg-white rounded-xl shadow-md p-6">
+    <!-- Left: Project Screenshots -->
+    <!-- <div class="flex flex-col space-y-4">
+      <div class="relative">
+        <img src="https://res.cloudinary.com/dhwgp0ccg/image/upload/v1746347350/qm-target_mjmtny.png" alt="Screenshot 1" class="rounded-md shadow-lg">
+        <img src="https://res.cloudinary.com/dhwgp0ccg/image/upload/v1746347350/qm-target_mjmtny.png" alt="Screenshot 2" class="absolute top-6 left-6 w-4/5 rounded-md shadow-md opacity-80">
+      </div>
+      <img src="https://res.cloudinary.com/dhwgp0ccg/image/upload/v1746347350/qm-target_mjmtny.png" alt="Screenshot 3" class="rounded-md shadow-lg">
+    </div> -->
+    <div class="relative w-[400px] h-[400px] md:w-[600px] md:h-[600px]">
+    
+      <!-- Gambar besar kiri bawah -->
+      <img src="https://res.cloudinary.com/dhwgp0ccg/image/upload/v1746346526/koperasi-web-user-add_tmtnmt.png" 
+           alt="Gambar Besar" 
+           class="absolute w-[200px] h-[200px] md:w-[450px] md:h-[260px] object-cover left-0 bottom-44 shadow-xl rounded transition-transform duration-300 hover:scale-125 grayscale hover:grayscale-0" />
+  
+      <!-- Gambar kecil kanan atas -->
+      <img src="https://res.cloudinary.com/dhwgp0ccg/image/upload/v1746346526/koperasi-web-user-add_tmtnmt.png" 
+           alt="Gambar Kecil" 
+           class="absolute w-[120px] h-[120px] md:w-[180px] md:h-[180px] object-cover right-20 top-0 shadow-lg rounded transition-transform duration-300 hover:scale-125 grayscale hover:grayscale-0" />
+  
+      <!-- Gambar sedang kanan bawah -->
+      <img src="https://res.cloudinary.com/dhwgp0ccg/image/upload/v1746346526/koperasi-web-user-add_tmtnmt.png" 
+           alt="Gambar Sedang" 
+           class="absolute w-[180px] h-[180px] md:w-[280px] md:h-[280px] object-cover right-14 bottom-16 shadow-lg rounded transition-transform duration-300 hover:scale-125 grayscale hover:grayscale-0" />
+  
+    </div>
+
+    <!-- Right: Description -->
+    <div class="flex flex-col justify-center text-gray-800">
+      <h2 class="text-2xl font-bold mb-4">Generative Trivia</h2>
+      <p class="mb-6 leading-relaxed">
+        A generative trivia website built with <strong>Next.js, Firebase, NextAuth, Google OAuth,</strong> and <strong>TypeScript</strong>. 
+        Users can generate trivia questions for predefined school subjects and answer them with a unique interactive input style. 
+        The application supports user authentication with Google and stores data in Firestore. 
+        You can see the source code of this project on my GitHub account or preview the project by clicking the button below.
+      </p>
+      <div class="flex space-x-4">
+        <button class="bg-gray-800 text-white px-5 py-2 rounded-full shadow-md hover:bg-gray-700 transition">More</button>
+        <button class="border border-gray-800 text-gray-800 px-5 py-2 rounded-full shadow-md hover:bg-gray-100 transition">Preview</button>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>

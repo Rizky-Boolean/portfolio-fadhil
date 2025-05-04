@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Blob Smooth Free Move & Follow</title>
+  <!-- <script src="https://cdn.tailwindcss.com"></script> -->
+  <link href="../src/css/output.css" rel="stylesheet">
+  <!-- AOS CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+  <style>
+    /* Blob pertama: Mengikuti kursor (lebih cepat) */
+    .blob-follow {
+      pointer-events: none;
+      position: fixed;
+      width: 15rem;
+      height: 18rem;
+      background: linear-gradient(135deg,
+          oklch(45.7% 0.24 277.023),
+          oklch(45.9% 0.187 3.815));
+      opacity: 0.3;
+      border-radius: 9999px;
+      filter: blur(60px);
+      mix-blend-mode: screen;
+      z-index: -1;
+      animation: rotateBlob 20s linear infinite;
+      /* Animasi rotasi */
+    }
+
+    /* Blob kedua: Bergerak bebas tetapi mengikuti kursor (lebih lambat) */
+    .blob-free {
+      pointer-events: none;
+      position: fixed;
+      /* Agar tidak terikat dengan frame halaman */
+      width: 25rem;
+      height: 30rem;
+      background: linear-gradient(135deg,
+          oklch(45.7% 0.24 277.023),
+          oklch(45.9% 0.187 3.815));
+      opacity: 0.3;
+      border-radius: 9999px;
+      filter: blur(60px);
+      mix-blend-mode: screen;
+      z-index: -2;
+      animation: rotateBlob 25s linear infinite;
+      /* Animasi rotasi */
+    }
+
+
+
+    /* section {
+      height: 100vh;
+    } */
+    body {
+      height: 100%;
+      scroll-snap-type: y mandatory;
+      overflow-y: scroll;
+      scroll-behavior: smooth;
+      margin: 0;
+      padding: 0;
+    }
+
+    section {
+      scroll-snap-align: start;
+      height: 100vh;
+    }
+
+
+
+
+
+
+    /* Animasi rotasi */
+    @keyframes rotateBlob {
+      0% {
+        transform: rotate(0deg);
+      }
+
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+  </style>
+</head>
+
+<body class="min-h-screen bg-white dark:bg-gray-900 text-black dark:text-white transition-colors duration-300">
+
+
+
+  <!-- Blob pertama: Mengikuti kursor -->
+  <div id="blob-follow" class="blob-follow"></div>
+
+  <!-- Blob kedua: Bergerak bebas tetapi mengikuti kursor -->
+  <div id="blob-free" class="blob-free"></div>
+
+  <!-- Navbar -->
+  <nav
+    class="fixed top-0 left-0 w-full z-50 flex items-center justify-between px-6 py-4 shadow-lg backdrop-blur-md bg-white/60 dark:bg-gray-900/60 text-gray-900 dark:text-white">
+    <!-- Logo -->
+    <div class="flex items-center">
+      <!-- Logo untuk Light Mode -->
+      <img src="./image/LampungCodev2.png" alt="Logo Light" class="h-8 w-auto block dark:hidden">
+
+      <!-- Logo untuk Dark Mode -->
+      <img src="./image/LampungCodev22.png" alt="Logo Dark" class="h-8 w-auto hidden dark:block">
+
+      <span class="text-2xl font-semibold ml-2">M Rizky Fadhilah</span>
+    </div>
+    <button id="theme-toggle" class="text-white dark:text-yellow-300 focus:outline-none text-2xl">
+      🌙
+    </button>
+    <!-- Hamburger Button -->
+    <button class="text-white focus:outline-none">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+        class="w-8 h-8 text-gray-900 dark:text-white">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 9h16.5m-16.5 6.75h16.5" />
+      </svg>
+    </button>
+  </nav>
+  <!-- END Navbar -->
+
+  <!-- Sidebar kiri -->
+  <div class="fixed left-4 top-1/2 -translate-y-1/2 h-[60vh] w-16 
+bg-white/30 dark:bg-gray-800/40 backdrop-blur-md 
+border border-white/10 rounded-xl shadow-lg flex-col items-center py-6 z-30 hidden md:flex">
+
+    <!-- Kontainer ikon (flex-1 agar menyebar secara otomatis) -->
+    <div class="flex flex-col justify-between flex-1 w-full items-center py-12">
+
+      <!-- Home -->
+      <a href="#home" class="text-gray-700 dark:text-white hover:text-rose-600 dark:hover:text-rose-500 transition">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+          class="w-6 h-6">
+          <path stroke-linecap="round" stroke-linejoin="round" d="m2.25 12 8.954-8.955c.44-.439 1.152-.439 
+  1.591 0L21.75 12M4.5 9.75v10.125c0 
+  .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 
+  1.125-1.125h2.25c.621 0 1.125.504 
+  1.125 1.125V21h4.125c.621 0 
+  1.125-.504 1.125-1.125V9.75M8.25 21h8.25" />
+        </svg>
+      </a>
+
+      <!-- about-me -->
+      <a href="#about-me" class="text-gray-700 dark:text-white hover:text-rose-600 dark:hover:text-rose-500 transition">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+          class="w-6 h-6">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 
+  3.75 3.75 0 0 1 7.5 0ZM4.501 
+  20.118a7.5 7.5 0 0 1 14.998 
+  0A17.933 17.933 0 0 1 12 
+  21.75c-2.676 0-5.216-.584-7.499-1.632Z" />
+        </svg>
+      </a>
+
+      <!-- project -->
+      <a href="#project" class="text-gray-700 dark:text-white hover:text-rose-600 dark:hover:text-rose-500 transition">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+          class="w-6 h-6">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 9.776c.112-.017.227-.026.344-.026h15.812c.117 
+  0 .232.009.344.026m-16.5 
+  0a2.25 2.25 0 0 0-1.883 
+  2.542l.857 6a2.25 2.25 0 0 
+  0 2.227 1.932H19.05a2.25 2.25 
+  0 0 0 2.227-1.932l.857-6a2.25 
+  2.25 0 0 0-1.883-2.542m-16.5 
+  0V6A2.25 2.25 0 0 1 6 
+  3.75h3.879a1.5 1.5 0 0 1 
+  1.06.44l2.122 2.12a1.5 1.5 
+  0 0 0 1.06.44H18A2.25 2.25 
+  0 0 1 20.25 9v.776" />
+        </svg>
+      </a>
+
+      <!-- contact -->
+      <a href="#contact" class="text-gray-700 dark:text-white hover:text-rose-600 dark:hover:text-rose-500 transition">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+          class="w-6 h-6">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 
+  1-2.25 2.25h-15a2.25 2.25 0 0 
+  1-2.25-2.25V6.75m19.5 0A2.25 
+  2.25 0 0 0 19.5 4.5h-15a2.25 
+  2.25 0 0 0-2.25 2.25m19.5 
+  0v.243a2.25 2.25 0 0 1-1.07 
+  1.916l-7.5 4.615a2.25 2.25 
+  0 0 1-2.36 0L3.32 8.91a2.25 
+  2.25 0 0 1-1.07-1.916V6.75" />
+        </svg>
+      </a>
+    </div>
+  </div>
+
+
+  <main class="snap-y snap-mandatory h-screen overflow-y-scroll scroll-smooth">
+    <section id="home" class="px-3 md:px-[12rem]">
+      <!-- Konten utama -->
+      <div class="relative z-20 flex flex-col items-center justify-center h-full text-center">
+        <h1 data-aos="fade-up" class="text-2xl font-bold mb-4">M Rizky Fadhilah</h1>
+        <h2 data-aos="fade-up" class="text-5xl font-bold mb-4 ">FullStack Developer</h2>
+
+        <p data-aos="fade-up" class="text-xl mx-12 text-gray-600 dark:text-gray-300">A junior fullstack developer who
+          currently focused on
+          Web Development.
+          Other
+          than that, I also interested in UX/UI Design, Mobile and AI Development. I love to learn new things and always
+          open to new opportunities.</p>
+      </div>
+    </section>
+
+    <section id="about-me" class="px-3 md:px-[12rem] flex items-center">
+
+      <div class="relative z-20 grid grid-cols-1 md:grid-cols-2 gap-4 justify-center items-center">
+        <div>
+          <h1 class="text-2xl md:text-7xl font-bold mb-4 ">About Me</h1>
+          <p class="text-gray-600 dark:text-gray-300">Lorem ipsum dolor sit amet consectetur
+            adipisicing elit. Ut
+            quasi vitae aperiam
+            maxime fugit temporibus natus asperiores, soluta possimus exercitationem, id magnam nam omnis nemo labore
+            suscipit unde vero itaque.</p>
+          <a href="#"
+            class="bg-rose-600 text-white px-4 py-2 rounded-lg mt-5 inline-block hover:bg-rose-500 duration-300">Show
+            Detail</a>
+        </div>
+        <div class="m-16 overflow-hidden rounded-lg shadow-lg">
+          <img src="https://res.cloudinary.com/dzsvqz2fz/image/upload/v1737890629/IMG_1001_fpk1ps.jpg" alt="#"
+            class="transition-transform duration-300 hover:scale-105 grayscale hover:grayscale-0">
+
+        </div>
+      </div>
+
+    </section>
+
+    <section id="project" class="px-3 md:px-[12rem]">
+      <!-- Konten utama -->
+      <div class="relative z-20 text-white flex flex-col items-center justify-center h-full text-center">
+        <h1 class="text-2xl text-black dark:text-white md:text-5xl font-bold mb-4">My Project</h1>
+
+        <p class="text-0.5xl mx-12  md:text-xl text-gray-600 dark:text-gray-300">Lorem ipsum dolor sit amet, consectetur
+          adipisicing elit.
+          Perspiciatis odio
+          tempore placeat? Esse quibusdam temporibus vel non facere accusamus deleniti doloribus ullam, minus ea sequi
+          tempora possimus, exercitationem tempore aliquid.</p>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-8 mx-16">
+          <div class="bg-gray-50 dark:bg-gray-800 p-4 rounded-lg shadow-lg">
+            <div class="overflow-hidden rounded-lg shadow-lg">
+              <img src="https://res.cloudinary.com/dzsvqz2fz/image/upload/v1737890629/IMG_1001_fpk1ps.jpg" alt="#">
+            </div>
+            <h2 class="text-xl font-bold text-black dark:text-white mt-4 mb-2">Project 1</h2>
+            <p class="text-gray-600 dark:text-gray-300">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+              Quisquam, voluptatibus.</p>
+          </div>
+          <div class="bg-gray-50 dark:bg-gray-800 p-4 rounded-lg shadow-lg">
+            <div class="overflow-hidden rounded-lg shadow-lg">
+              <img src="https://res.cloudinary.com/dzsvqz2fz/image/upload/v1737890629/IMG_1001_fpk1ps.jpg" alt="#">
+            </div>
+            <h2 class="text-xl font-bold text-black dark:text-white mt-4 mb-2">Project 1</h2>
+            <p class="text-gray-600 dark:text-gray-300">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+              Quisquam, voluptatibus.</p>
+          </div>
+          <div class="bg-gray-50 dark:bg-gray-800 p-4 rounded-lg shadow-lg">
+            <div class="overflow-hidden rounded-lg shadow-lg">
+              <img src="https://res.cloudinary.com/dzsvqz2fz/image/upload/v1737890629/IMG_1001_fpk1ps.jpg" alt="#">
+            </div>
+            <h2 class="text-xl font-bold text-black dark:text-white mt-4 mb-2">Project 1</h2>
+            <p class="text-gray-600 dark:text-gray-300">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+              Quisquam, voluptatibus.</p>
+          </div>
+        </div>
+        <a href="#"
+          class="px-4 py-2 bg-rose-600 rounded-lg mt-8 inline-block text-white hover:bg-rose-500 duration-300">See
+          More</a>
+    </section>
+
+    <section id="contact" class="px-3 md:px-[12rem]">
+      <!-- Konten utama -->
+      <div class="relative z-20 text-white flex flex-col items-center justify-center h-full text-center">
+        <h1 class="text-2xl md:text-7xl text-black dark:text-white font-bold mb-4">Contact Me</h1>
+
+        <p class="text-xl mx-12 text-gray-600 dark:text-gray-300">A junior fullstack developer who currently focused on
+          Web Development.
+          Other than that, I also interested in UX/UI Design, Mobile and AI Development. I love to learn new things and
+          always open to new opportunities.</p>
+      </div>
+    </section>
+  </main>
+  <!-- AOS JS -->
+  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+  <script>
+    AOS.init({
+      duration: 1000, // durasi animasi dalam ms (1 detik)
+      once: false, // animasi hanya terjadi sekali saat scroll
+    });
+    AOS.refresh();
+  </script>
+  <script>
+    // Pastikan dark mode aktif secara default
+    if (!localStorage.theme) {
+      document.documentElement.classList.add('dark');
+      localStorage.theme = 'dark';
+    } else if (localStorage.theme === 'dark') {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
+
+    document.getElementById('theme-toggle').addEventListener('click', () => {
+      const html = document.documentElement;
+      const isDark = html.classList.toggle('dark');
+      localStorage.theme = isDark ? 'dark' : 'light';
+    });
+  </script>
+
+  <!-- Script untuk mengikuti kursor -->
+  <script>
+
+    // Menambahkan event listener untuk smooth scrolling
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+
+        const targetId = this.getAttribute('href').substring(1);
+        const targetElement = document.getElementById(targetId);
+
+        if (targetElement) {
+          targetElement.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }
+      });
+    });
+
+
+
+
+    // Blob pertama (lebih cepat)
+    const blobFollow = document.getElementById("blob-follow");
+    let mouseX = 0;
+    let mouseY = 0;
+    let currentX = 0;
+    let currentY = 0;
+    const speedFollow = 0.2;  // Kecepatan lebih cepat
+
+    // Blob kedua (lebih lambat)
+    const blobFree = document.getElementById("blob-free");
+    let freeX = 0;
+    let freeY = 0;
+    const speedFree = 0.009;  // Kecepatan lebih lambat
+
+    // Mengatur posisi mouse
+    document.addEventListener("mousemove", (e) => {
+      mouseX = e.clientX - 160; // Offset setengah dari lebar blob
+      mouseY = e.clientY - 160;
+    });
+
+    function animate() {
+      // Interpolasi posisi untuk blob pertama
+      currentX += (mouseX - currentX) * speedFollow;
+      currentY += (mouseY - currentY) * speedFollow;
+
+      blobFollow.style.left = `${currentX}px`;
+      blobFollow.style.top = `${currentY}px`;
+
+      // Interpolasi posisi untuk blob kedua
+      freeX += (mouseX - freeX) * speedFree;
+      freeY += (mouseY - freeY) * speedFree;
+
+      blobFree.style.left = `${freeX}px`;
+      blobFree.style.top = `${freeY}px`;
+
+      requestAnimationFrame(animate);
+    }
+
+    animate();
+  </script>
+  <script>
+    const sections = document.querySelectorAll("section");
+    const navLinks = document.querySelectorAll(".fixed a[href^='#']");
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          const id = entry.target.getAttribute("id");
+          const navLink = document.querySelector(`.fixed a[href="#${id}"]`);
+
+          if (entry.isIntersecting) {
+            navLinks.forEach((link) => {
+              link.classList.remove("text-rose-600", "dark:text-rose-500");
+            });
+            navLink.classList.add("text-rose-600", "dark:text-rose-500");
+          }
+        });
+      },
+      {
+        root: null,
+        rootMargin: "0px",
+        threshold: 0.6, // Artinya section dianggap aktif saat 60% terlihat
+      }
+    );
+
+    sections.forEach((section) => {
+      observer.observe(section);
+    });
+  </script>
+
+</body>
+
+</html>

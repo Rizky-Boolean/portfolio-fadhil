@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About Fadhil</title>
+  <link rel="icon" type="image/x-icon" href="./image/LampungCodev.ico">
+  <!-- <script src="https://cdn.tailwindcss.com"></script> -->
+  <link href="../src/css/output.css" rel="stylesheet">
+  <!-- AOS CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+
+  <link href="https://unicons.iconscout.com/release/v4.0.0/css/line.css" rel="stylesheet">
+
+  <style>
+    /* Blob pertama: Mengikuti kursor (lebih cepat) */
+    .blob-follow {
+      pointer-events: none;
+      position: fixed;
+      width: 15rem;
+      height: 18rem;
+      background: linear-gradient(135deg,
+          oklch(45.7% 0.24 277.023),
+          oklch(45.9% 0.187 3.815));
+      opacity: 0.3;
+      border-radius: 9999px;
+      filter: blur(60px);
+      mix-blend-mode: screen;
+      z-index: -1;
+      animation: rotateBlob 20s linear infinite;
+      /* Animasi rotasi */
+    }
+
+    /* Blob kedua: Bergerak bebas tetapi mengikuti kursor (lebih lambat) */
+    .blob-free {
+      pointer-events: none;
+      position: fixed;
+      /* Agar tidak terikat dengan frame halaman */
+      width: 25rem;
+      height: 30rem;
+      background: linear-gradient(135deg,
+          oklch(45.7% 0.24 277.023),
+          oklch(45.9% 0.187 3.815));
+      opacity: 0.3;
+      border-radius: 9999px;
+      filter: blur(60px);
+      mix-blend-mode: screen;
+      z-index: -2;
+      animation: rotateBlob 25s linear infinite;
+      /* Animasi rotasi */
+    }
+
+
+
+    /* section {
+      height: 100vh;
+    } */
+    body {
+      height: 100%;
+      scroll-snap-type: y mandatory;
+      overflow-y: scroll;
+      scroll-behavior: smooth;
+      margin: 0;
+      padding: 0;
+    }
+
+    main::-webkit-scrollbar {
+      display: none;
+    }
+
+    /* Untuk Firefox */
+    main {
+      scrollbar-width: none;
+      /* Firefox */
+      -ms-overflow-style: none;
+      /* IE and Edge */
+    }
+
+    section {
+      scroll-snap-align: start;
+      height: 100vh;
+    }
+
+
+
+
+    /* Animasi rotasi */
+    @keyframes rotateBlob {
+      0% {
+        transform: rotate(0deg);
+      }
+
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+  </style>
+</head>
+
+<body class="min-h-screen bg-white dark:bg-gray-900 text-black dark:text-white transition-colors duration-300">
+
+
+
+  <!-- Blob pertama: Mengikuti kursor -->
+  <div id="blob-follow" class="blob-follow"></div>
+
+  <!-- Blob kedua: Bergerak bebas tetapi mengikuti kursor -->
+  <div id="blob-free" class="blob-free"></div>
+  <!-- Navbar -->
+  <nav
+    class="fixed top-0 left-0 w-full z-50 flex items-center justify-between px-6 py-4 shadow-lg backdrop-blur-md bg-white/60 dark:bg-gray-900/60 text-gray-900 dark:text-white transition-all duration-300"
+    id="navbar">
+
+    <!-- Left Side: Logo -->
+    <a href="index.html" class="flex items-center">
+      <img src="./image/LampungCodev2.png" alt="Logo Light" class="h-8 w-auto block dark:hidden">
+      <img src="./image/LampungCodev22.png" alt="Logo Dark" class="h-8 w-auto hidden dark:block">
+      <span class="hidden md:flex text-2xl font-semibold ml-2">M Rizky Fadhilah</span>
+    </a>
+
+    <!-- Right Side: Button Groups -->
+    <div class="flex items-center space-x-4 gap-6">
+
+      <!-- Subgroup: Theme & Language -->
+      <div class="flex items-center space-x-3 gap-2">
+        <button id="language-toggle" class="w-6 h-6">
+          <img id="language-icon" src="https://upload.wikimedia.org/wikipedia/commons/9/9f/Flag_of_Indonesia.svg"
+            alt="Language Icon" class="w-full h-full object-cover rounded-full">
+        </button>
+
+        <button id="theme-toggle"
+          class="w-6 h-6 text-black dark:text-white rounded-full flex items-center justify-center transition duration-300">
+          <span id="theme-icon">
+            <!-- Icon dark mode -->
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+              stroke="currentColor" class="size-4 mx-auto">
+              <path stroke-linecap="round" stroke-linejoin="round"
+                d="M21.752 15.002A9.72 9.72 0 0 1 18 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 0 0 3 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 0 0 9.002-5.998Z" />
+            </svg>
+          </span>
+        </button>
+      </div>
+
+      <!-- Hamburger Menu -->
+      <div>
+        <button id="hamburger-btn" class="focus:outline-none">
+          <span id="hamburger-icon">
+            <!-- Default Hamburger Icon -->
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+              stroke="currentColor" class="w-8 h-8 text-gray-900 dark:text-white">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 9h16.5m-16.5 6.75h16.5" />
+            </svg>
+          </span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Fullscreen Menu Overlay -->
+    <div id="mobile-menu"
+      class="fixed top-0 left-0 w-full h-0 overflow-hidden bg-white/90 dark:bg-gray-900/90 z-40 flex flex-col items-center justify-center transition-all duration-500 ease-in-out text-black dark:text-white">
+      <!-- Add your nav items here -->
+      <button id="close-btn" class="absolute top-4 right-4 text-white">
+        <!-- Icon close (X) -->
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+          class="w-8 h-8 text-white">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
+        </svg>
+      </button>
+      <a href="index.html" class="mb-4 text-xl font-semibold">Home</a>
+      <a href="about.html" class="mb-4 text-xl font-semibold">About</a>
+      <a href="project.html" class="mb-4 text-xl font-semibold">Project</a>
+      <a href="contact.html" class="mb-4 text-xl font-semibold">Contact</a>
+    </div>
+  </nav>
+
+  <!-- END Navbar -->
+
+  <section class="max-w-7xl mx-auto mt-20 px-6 py-16">
+
+    <h2 class="text-3xl font-bold mb-6 relative inline-block">
+      <span class="absolute left-0 -top-6 w-16 h-1 bg-indigo-700 rounded-full"></span>
+      <span class="absolute left-0 -top-3 w-12 h-1 bg-indigo-700 rounded-full"></span>
+      Who Am I?
+    </h2>
+    <div class="flex flex-col md:flex-row items-start gap-10">
+
+      <div class="relative w-[400px] h-[400px] md:w-[600px] md:h-[600px]">
+    
+        <!-- Gambar besar kiri bawah -->
+        <img src="https://res.cloudinary.com/dhwgp0ccg/image/upload/v1746346526/koperasi-web-user-add_tmtnmt.png" 
+             alt="Gambar Besar" 
+             class="absolute w-[200px] h-[200px] md:w-[360px] md:h-[360px] object-cover left-0 bottom-44 shadow-xl rounded transition-transform duration-300 hover:scale-125 grayscale hover:grayscale-0" />
+    
+        <!-- Gambar kecil kanan atas -->
+        <img src="https://res.cloudinary.com/dhwgp0ccg/image/upload/v1746346526/koperasi-web-user-add_tmtnmt.png" 
+             alt="Gambar Kecil" 
+             class="absolute w-[120px] h-[120px] md:w-[180px] md:h-[180px] object-cover right-20 top-0 shadow-lg rounded transition-transform duration-300 hover:scale-125 grayscale hover:grayscale-0" />
+    
+        <!-- Gambar sedang kanan bawah -->
+        <img src="https://res.cloudinary.com/dhwgp0ccg/image/upload/v1746346526/koperasi-web-user-add_tmtnmt.png" 
+             alt="Gambar Sedang" 
+             class="absolute w-[180px] h-[180px] md:w-[280px] md:h-[280px] object-cover right-14 bottom-16 shadow-lg rounded transition-transform duration-300 hover:scale-125 grayscale hover:grayscale-0" />
+    
+      </div>
+
+      <!-- Konten Deskripsi -->
+      <div class="flex-1">
+
+        <h3 class="text-2xl font-semibold">Alvalen Shafelbilyunazra</h3>
+        <p class="mt-4 text-gray-700 leading-relaxed">
+          Hey there, I’m Alvalen Shafelbilyunazra, a <strong>tech enthusiast</strong> and <strong>aspiring Web Developer</strong>. Originating from Pasuruan, East Java, Indonesia, I’m currently embarking on a fascinating journey at <strong>Universitas Negeri Malang</strong>, where I’m pursuing my degree in <strong>Informatics Engineering</strong>. My passion for technology and coding knows no bounds. Beyond the world of coding, I find myself deeply immersed in the realms of design, Game Development, and the fascinating universe of AI. I believe that in today’s fast-paced digital landscape, being a <strong>lifelong learner</strong> is not just a choice, but a necessity. Let’s connect and explore this ever-evolving world of tech together!
+        </p>
+
+        <!-- Spotify Status Button -->
+        <div class="mt-6">
+          <button class="flex items-center gap-3 px-6 py-3 border border-gray-400 rounded-lg text-gray-700 hover:bg-gray-200 transition">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/1/19/Spotify_logo_without_text.svg" alt="Spotify" class="w-6 h-6" />
+            <span>Currently offline</span>
+          </button>
+        </div>
+      </div>
+
+    </div>
+    <div class="max-w-6xl mx-auto px-6 py-16 text-center">
+    
+      <!-- Title -->
+      <h2 class="text-3xl font-bold mb-2">Skills and Expertise</h2>
+      <p class="text-gray-600 mb-12">Explore some skills I'm proficient in to deliver high-quality solutions.</p>
+  
+      <!-- Icon Section -->
+      <div class="flex flex-wrap justify-center gap-12 mb-16">
+        <div class="flex flex-col items-center">
+          <img src="https://cdn-icons-png.flaticon.com/512/1055/1055687.png" alt="Web Dev" class="w-12 h-12 mb-2" />
+          <p class="font-medium">Web Development</p>
+        </div>
+        <div class="flex flex-col items-center">
+          <img src="https://cdn-icons-png.flaticon.com/512/747/747376.png" alt="REST API" class="w-12 h-12 mb-2" />
+          <p class="font-medium">REST API</p>
+        </div>
+        <div class="flex flex-col items-center">
+          <img src="https://cdn-icons-png.flaticon.com/512/565/565547.png" alt="Mobile Dev" class="w-12 h-12 mb-2" />
+          <p class="font-medium">Mobile Development</p>
+        </div>
+      </div>
+  
+      <!-- Language & Framework -->
+      <div class="flex flex-col md:flex-row justify-between items-start text-sm md:text-base md:gap-14">
+        
+        <div class="mb-8 md:mb-0 md:w-1/2 text-center">
+          <h3 class="tracking-widest text-2xl font-semibold mb-2">LANGUAGE & FRAMEWORK</h3>
+          <p class="leading-relaxed">
+            <span class="font-bold">HTML</span> | <span class="font-bold">CSS</span> | <span class="font-bold">Javascript</span> |
+            <span class="font-bold">Typescript</span> | <span class="font-bold">React</span> | <span class="font-bold">NextJS</span> |
+            <span class="font-bold">TailwindCSS</span> | Bootstrap | NodeJS | ExpressJS | MySQL | PostgreSQL |
+            MongoDB | Firebase | PHP | <span class="font-bold">Laravel</span> | Python
+          </p>
+        </div>
+  
+        <!-- Tools -->
+        <div class="md:w-1/2 text-center">
+          <h3 class="tracking-widest text-2xl font-semibold mb-2">TOOLS</h3>
+          <p class="leading-relaxed">
+            <span class="font-bold">Visual Studio Code</span> | Jet Brains | <span class="font-bold">Git</span> |
+            <span class="font-bold">Github</span> | Figma | Adobe Photoshop | Adobe Premiere Pro |
+            Adobe After Effect
+          </p>
+        </div>
+  
+      </div>
+  
+    </div>
+    <div class="py-10 px-6">
+      <div class="max-w-6xl mx-auto border-l-4 border-gray-700 relative">
+    
+        <!-- Timeline Item -->
+        <div class="mb-12 ml-4 relative">
+          <!-- Bullet -->
+          <div class="absolute -left-7 top-0 w-5 h-5 bg-black rounded-full z-10"></div>
+          <!-- Content -->
+          <div>
+            <p class="text-sm font-semibold text-gray-700">2023 – Present</p>
+            <h3 class="font-bold text-lg">PT Hafdzamedia Teknologi Aplikasi</h3>
+            <p class="text-gray-600 text-sm mb-2">Fullstack Web Developer | Part-time</p>
+            <p class="text-gray-700 mb-2">
+              Responsible for building and maintaining scalable web applications using the latest technologies. Collaborated with cross-functional teams to deliver high-quality solutions that meet business requirements.
+            </p>
+            <div class="flex flex-wrap gap-2">
+              <span class="bg-gray-200 text-gray-700 px-3 py-1 rounded-full text-sm">React</span>
+              <span class="bg-gray-200 text-gray-700 px-3 py-1 rounded-full text-sm">Next.js</span>
+              <span class="bg-gray-200 text-gray-700 px-3 py-1 rounded-full text-sm">Laravel</span>
+              <span class="bg-gray-200 text-gray-700 px-3 py-1 rounded-full text-sm">MySql</span>
+            </div>
+          </div>
+        </div>
+    
+        <!-- Timeline Item -->
+        <div class="mb-12 ml-4 relative">
+          <div class="absolute -left-7 top-0 w-5 h-5 bg-black rounded-full z-10"></div>
+          <div>
+            <p class="text-sm font-semibold text-gray-700">2024 – Present</p>
+            <h3 class="font-bold text-lg">Outlier</h3>
+            <p class="text-gray-600 text-sm mb-2">AI Trainer | Freelance</p>
+            <p class="text-gray-700 mb-2">
+              Crafted and refined chatbot prompts using prompt engineering and RLHF techniques to improve the AI responses in English and Indonesian, leading to more accurate and contextually relevant interactions.
+            </p>
+            <div class="flex flex-wrap gap-2">
+              <span class="bg-gray-200 text-gray-700 px-3 py-1 rounded-full text-sm">Generative AI</span>
+              <span class="bg-gray-200 text-gray-700 px-3 py-1 rounded-full text-sm">Prompt Engineering</span>
+              <span class="bg-gray-200 text-gray-700 px-3 py-1 rounded-full text-sm">Problem Solving</span>
+            </div>
+          </div>
+        </div>
+    
+        <!-- Timeline Item -->
+        <div class="ml-4 relative">
+          <div class="absolute -left-7 top-0 w-5 h-5 bg-black rounded-full z-10"></div>
+          <div>
+            <p class="text-sm font-semibold text-gray-700">2023 – Present</p>
+            <h3 class="font-bold text-lg">Self-Employed</h3>
+            <p class="text-gray-600 text-sm mb-2">Web Developer | Freelance</p>
+            <p class="text-gray-700 mb-2">
+              Specialized in crafting innovative solutions using Laravel and Next.js, enhancing client satisfaction and project efficiency. Contributed expertise in both frontend and backend development during collaborative team projects, leading to successful project completions.
+            </p>
+            <div class="flex flex-wrap gap-2">
+              <span class="bg-gray-200 text-gray-700 px-3 py-1 rounded-full text-sm">React</span>
+              <span class="bg-gray-200 text-gray-700 px-3 py-1 rounded-full text-sm">Next.js</span>
+              <span class="bg-gray-200 text-gray-700 px-3 py-1 rounded-full text-sm">Laravel</span>
+              <span class="bg-gray-200 text-gray-700 px-3 py-1 rounded-full text-sm">MySql</span>
+            </div>
+          </div>
+        </div>
+    
+      </div>
+    </div>
+
+    <div class="py-16 px-6 ">
+      <div class="max-w-6xl mx-auto">
+        <!-- Heading -->
+        <div class="text-center mb-12">
+          <h2 class="text-4xl font-bold text-black">Education</h2>
+          <p class="text-gray-700 mt-2">Get to know more about my educational background.</p>
+        </div>
+    
+        <div class="grid md:grid-cols-3 gap-8 items-start">
+          <!-- Left Column (Education Info + Images) -->
+          <div class="md:col-span-2 space-y-6">
+            <div>
+              <p class="text-lg font-semibold">2022 – Present</p>
+              <h3 class="text-2xl font-bold text-black">Universitas Negeri Malang</h3>
+              <p class="text-gray-700">S1 Teknik Informatika | Computer Science</p>
+            </div>
+    
+            <!-- Image Gallery -->
+            <div class="flex gap-4">
+              <img src="https://res.cloudinary.com/dhwgp0ccg/image/upload/v1746346512/koperasi-web-product_yn4pfp.png" alt="Achievement 1" class="rounded-lg w-full object-cover">
+            </div>
+    
+            <!-- Description -->
+            <p class="text-gray-800 text-sm">
+              Aspiring to be a software engineer, I am currently pursuing a bachelor's degree in computer science at Universitas Negeri Malang. Fascinated by the world of technology, I am eager to learn and explore new things in the field of computer science.
+            </p>
+    
+            <!-- GPA Badge -->
+            <span class="inline-block bg-gray-300 text-gray-800 text-sm px-4 py-1 rounded-full">
+              GPA: 3.9 out of 4
+            </span>
+          </div>
+    
+          <!-- Right Column (Achievements) -->
+          <div class="space-y-6">
+            <h4 class="text-xl font-bold text-black">Achievements</h4>
+            <p class="text-gray-700 mb-4">Some of my achievements during my study.</p>
+    
+            <!-- Achievement Items -->
+            <ul class="space-y-4">
+              <li class="flex items-start gap-3">
+                <div class="p-2 rounded-full bg-gray-200">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 24 24" id="medal">
+                    <path fill="#6563FF" d="M21.38,5.76a1,1,0,0,0-.47-.61l-5.2-3a1,1,0,0,0-1.37.36L12,6.57,9.66,2.51a1,1,0,0,0-1.37-.36l-5.2,3a1,1,0,0,0-.47.61,1,1,0,0,0,.1.75l4,6.83A5.91,5.91,0,0,0,6,16a6,6,0,1,0,11.34-2.72l3.9-6.76A1,1,0,0,0,21.38,5.76ZM5,6.38l3.46-2L11.68,10A5.94,5.94,0,0,0,8,11.58ZM12,20a4,4,0,0,1-4-4,4,4,0,0,1,4-4,4,4,0,1,1,0,8Zm4-8.45a5.9,5.9,0,0,0-1.86-1.15L13.16,8.57l2.42-4.19,3.46,2Z"></path>
+                  </svg>
+                </div>
+                <div>
+                  <p class="font-semibold">Special Award | Gold Medal | Incubation Opportunity</p>
+                  <p class="text-sm text-gray-600">Indonesia Inventor Day 2024 (IID) | Aug 2024</p>
+                </div>
+              </li>
+    
+              <li class="flex items-start gap-3">
+                <div class="p-2 rounded-full bg-gray-200">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 24 24" id="medal">
+                    <path fill="#6563FF" d="M21.38,5.76a1,1,0,0,0-.47-.61l-5.2-3a1,1,0,0,0-1.37.36L12,6.57,9.66,2.51a1,1,0,0,0-1.37-.36l-5.2,3a1,1,0,0,0-.47.61,1,1,0,0,0,.1.75l4,6.83A5.91,5.91,0,0,0,6,16a6,6,0,1,0,11.34-2.72l3.9-6.76A1,1,0,0,0,21.38,5.76ZM5,6.38l3.46-2L11.68,10A5.94,5.94,0,0,0,8,11.58ZM12,20a4,4,0,0,1-4-4,4,4,0,0,1,4-4,4,4,0,1,1,0,8Zm4-8.45a5.9,5.9,0,0,0-1.86-1.15L13.16,8.57l2.42-4.19,3.46,2Z"></path>
+                  </svg>
+                </div>
+                <div>
+                  <p class="font-semibold">3rd place (Bronze Medal)</p>
+                  <p class="text-sm text-gray-600">Student Digital Innovation Competition (LIDM) | Jun 2024</p>
+                </div>
+              </li>
+    
+              <li class="flex items-start gap-3">
+                <div class="p-2 rounded-full bg-gray-200">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 24 24" id="medal">
+                    <path fill="#6563FF" d="M21.38,5.76a1,1,0,0,0-.47-.61l-5.2-3a1,1,0,0,0-1.37.36L12,6.57,9.66,2.51a1,1,0,0,0-1.37-.36l-5.2,3a1,1,0,0,0-.47.61,1,1,0,0,0,.1.75l4,6.83A5.91,5.91,0,0,0,6,16a6,6,0,1,0,11.34-2.72l3.9-6.76A1,1,0,0,0,21.38,5.76ZM5,6.38l3.46-2L11.68,10A5.94,5.94,0,0,0,8,11.58ZM12,20a4,4,0,0,1-4-4,4,4,0,0,1,4-4,4,4,0,1,1,0,8Zm4-8.45a5.9,5.9,0,0,0-1.86-1.15L13.16,8.57l2.42-4.19,3.46,2Z"></path>
+                  </svg>
+                </div>
+                <div>
+                  <p class="font-semibold">3rd place (Bronze Medal)</p>
+                  <p class="text-sm text-gray-600">Fesmaro UI/UX Design | Jun 2024</p>
+                </div>
+              </li>
+    
+              <li class="flex items-start gap-3">
+                <div class="p-2 rounded-full bg-gray-200">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 24 24" id="medal">
+                    <path fill="#6563FF" d="M21.38,5.76a1,1,0,0,0-.47-.61l-5.2-3a1,1,0,0,0-1.37.36L12,6.57,9.66,2.51a1,1,0,0,0-1.37-.36l-5.2,3a1,1,0,0,0-.47.61,1,1,0,0,0,.1.75l4,6.83A5.91,5.91,0,0,0,6,16a6,6,0,1,0,11.34-2.72l3.9-6.76A1,1,0,0,0,21.38,5.76ZM5,6.38l3.46-2L11.68,10A5.94,5.94,0,0,0,8,11.58ZM12,20a4,4,0,0,1-4-4,4,4,0,0,1,4-4,4,4,0,1,1,0,8Zm4-8.45a5.9,5.9,0,0,0-1.86-1.15L13.16,8.57l2.42-4.19,3.46,2Z"></path>
+                  </svg>
+                </div>
+                <div>
+                  <p class="font-semibold">Finalist</p>
+                  <p class="text-sm text-gray-600">36th National Student Science Week (PIMNAS) | Nov 2023</p>
+                </div>
+              </li>
+    
+              <li class="flex items-start gap-3">
+                <div class="p-2 rounded-full bg-gray-200">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 24 24" id="medal">
+                    <path fill="#6563FF" d="M21.38,5.76a1,1,0,0,0-.47-.61l-5.2-3a1,1,0,0,0-1.37.36L12,6.57,9.66,2.51a1,1,0,0,0-1.37-.36l-5.2,3a1,1,0,0,0-.47.61,1,1,0,0,0,.1.75l4,6.83A5.91,5.91,0,0,0,6,16a6,6,0,1,0,11.34-2.72l3.9-6.76A1,1,0,0,0,21.38,5.76ZM5,6.38l3.46-2L11.68,10A5.94,5.94,0,0,0,8,11.58ZM12,20a4,4,0,0,1-4-4,4,4,0,0,1,4-4,4,4,0,1,1,0,8Zm4-8.45a5.9,5.9,0,0,0-1.86-1.15L13.16,8.57l2.42-4.19,3.46,2Z"></path>
+                  </svg>
+                </div>
+                <div>
+                  <p class="font-semibold">3rd place (Bronze Medal)</p>
+                  <p class="text-sm text-gray-600">FORKAFEST 3.0 Web Development Competition | Jan 2023</p>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    
+  </section>
+  
+
+  <!-- AOS JS -->
+  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+  <script>
+    AOS.init({
+      duration: 1000, // durasi animasi dalam ms (1 detik)
+      once: false, // animasi hanya terjadi sekali saat scroll
+    });
+    AOS.refresh();
+  </script>
+  <script>
+    // Paksa dark mode saat halaman pertama kali dimuat
+    document.documentElement.classList.add("dark");
+
+    const themeToggle = document.getElementById("theme-toggle");
+    const themeIcon = document.getElementById("theme-icon");
+
+    const sunSVG = `
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6 mx-auto">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386-1.591 1.591M21 12h-2.25m-.386 6.364-1.591-1.591M12 18.75V21m-4.773-4.227-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0Z" />
+      </svg>
+    `;
+
+    const moonSVG = `
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6 mx-auto">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M21.752 15.002A9.72 9.72 0 0 1 18 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 0 0 3 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 0 0 9.002-5.998Z" />
+      </svg>
+    `;
+
+    // Set ikon awal ke moon karena dipaksa dark mode
+    themeIcon.innerHTML = moonSVG;
+
+    themeToggle.addEventListener("click", () => {
+      const html = document.documentElement;
+      const isDark = html.classList.toggle("dark");
+
+      // Ubah ikon sesuai mode
+      themeIcon.innerHTML = isDark ? moonSVG : sunSVG;
+    });
+  </script>
+
+
+  <!-- Script untuk mengikuti kursor -->
+  <script>
+
+    // Menambahkan event listener untuk smooth scrolling
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+
+        const targetId = this.getAttribute('href').substring(1);
+        const targetElement = document.getElementById(targetId);
+
+        if (targetElement) {
+          targetElement.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }
+      });
+    });
+
+
+
+
+    // Blob pertama (lebih cepat)
+    const blobFollow = document.getElementById("blob-follow");
+    let mouseX = 0;
+    let mouseY = 0;
+    let currentX = 0;
+    let currentY = 0;
+    const speedFollow = 0.2;  // Kecepatan lebih cepat
+
+    // Blob kedua (lebih lambat)
+    const blobFree = document.getElementById("blob-free");
+    let freeX = 0;
+    let freeY = 0;
+    const speedFree = 0.009;  // Kecepatan lebih lambat
+
+    // Mengatur posisi mouse
+    document.addEventListener("mousemove", (e) => {
+      mouseX = e.clientX - 160; // Offset setengah dari lebar blob
+      mouseY = e.clientY - 160;
+    });
+
+    function animate() {
+      // Interpolasi posisi untuk blob pertama
+      currentX += (mouseX - currentX) * speedFollow;
+      currentY += (mouseY - currentY) * speedFollow;
+
+      blobFollow.style.left = `${currentX}px`;
+      blobFollow.style.top = `${currentY}px`;
+
+      // Interpolasi posisi untuk blob kedua
+      freeX += (mouseX - freeX) * speedFree;
+      freeY += (mouseY - freeY) * speedFree;
+
+      blobFree.style.left = `${freeX}px`;
+      blobFree.style.top = `${freeY}px`;
+
+      requestAnimationFrame(animate);
+    }
+
+    animate();
+  </script>
+  <script>
+    const sections = document.querySelectorAll("section");
+    const navLinks = document.querySelectorAll(".fixed a[href^='#']");
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          const id = entry.target.getAttribute("id");
+          const navLink = document.querySelector(`.fixed a[href="#${id}"]`);
+
+          if (entry.isIntersecting) {
+            navLinks.forEach((link) => {
+              link.classList.remove("text-rose-600", "dark:text-rose-500");
+            });
+            navLink.classList.add("text-rose-600", "dark:text-rose-500");
+          }
+        });
+      },
+      {
+        root: null,
+        rootMargin: "0px",
+        threshold: 0.6, // Artinya section dianggap aktif saat 60% terlihat
+      }
+    );
+
+    sections.forEach((section) => {
+      observer.observe(section);
+    });
+  </script>
+
+  <script>
+    const hamburgerBtn = document.getElementById('hamburger-btn');
+    const hamburgerIcon = document.getElementById('hamburger-icon');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const closeBtn = document.getElementById('close-btn'); // Tombol close
+
+    let menuOpen = false;
+
+    hamburgerBtn.addEventListener('click', () => {
+      menuOpen = !menuOpen;
+      if (menuOpen) {
+        mobileMenu.classList.remove('h-0');
+        mobileMenu.classList.add('h-screen');
+      } else {
+        mobileMenu.classList.remove('h-screen');
+        mobileMenu.classList.add('h-0');
+      }
+    });
+
+    // Menambahkan event listener untuk tombol close
+    closeBtn.addEventListener('click', () => {
+      mobileMenu.classList.remove('h-screen');
+      mobileMenu.classList.add('h-0');
+      menuOpen = false;
+    });
+
+  </script>
+
+  <script src="js/language.js"></script>
+
+</body>
+
+</html>
